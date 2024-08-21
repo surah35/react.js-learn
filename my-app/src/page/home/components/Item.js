@@ -1,6 +1,9 @@
 import EditItem from "./EditItem"
+import {useSortable} from "@dnd-kit/sortable"
+import {CSS} from "@dnd-kit/utilities"
+import { FiMenu } from "react-icons/fi";
 
-const Item = ({ title, date, time, updateData, id, updateState, isDone, isEditting }) => {
+const Item = ({ title, date, time, updateData, id, updateState, isDone, isEditting,setdragClass }) => {
 
     function deleteItem() {
         updateState.current = true //把更新資料的狀態改成True
@@ -31,19 +34,30 @@ const Item = ({ title, date, time, updateData, id, updateState, isDone, isEditti
             })
         })
     }
-
+    const {attributes,listeners, setNodeRef,transform,transition} = useSortable({id})
+    const style={
+        transition,
+        transform:CSS.Transform.toString(transform),
+    }
+    function changeClass(flag){
+        setdragClass((flag)?"Dragging":"");
+    }
+    
     return (!isEditting) ?
-        <div className="item">
-            <div className={`content ${isDone ? "done" : "none"}`} onClick={toggleDone}>
+        <div className="item" ref={setNodeRef}>
+            <div className={`content ${isDone ? "done" : "none"}`} onClick={toggleDone} style={style} >
                 <p className={(isDone) ? "title" : "none"}>{title}</p>
                 <p>{date + '\t' + time}</p>
             </div>
             <div>
-                <button className="edit" onClick={toggleEdit}>編輯</button>
-                <button className="remove" onClick={deleteItem}>刪除</button>
+                <button className="edit" onClick={toggleEdit}  style={style}>編輯</button>
+                <button className="remove" onClick={deleteItem}  style={style} >刪除</button>
             </div>
-
-        </div> : <EditItem
+            <div className="drap" style={style} {...attributes}{...listeners} onMouseDown={()=>changeClass(true)} onMouseUp={()=>changeClass(false)} onMouseOut={()=>changeClass(false)}>
+                <FiMenu size={15} />
+            </div>
+            
+        </div> : <EditItem 
             updateData={updateData}
             id={id}
             updateState={updateState}
@@ -51,6 +65,7 @@ const Item = ({ title, date, time, updateData, id, updateState, isDone, isEditti
             date={date}
             time={time}
         />
+
 }
 
 export default Item

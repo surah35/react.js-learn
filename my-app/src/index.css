@@ -51,19 +51,20 @@ input {
 }
 .list{
   /* border: 2px darkblue solid; */
+  border-radius: 5px;
   padding: 10px 0;
 }
 .item{
   display:flex ;
   box-sizing: inherit;
   border-bottom: 1px solid;
-  padding:7px 0 ;
+  padding:7px 4px ;
   justify-content:space-between;
   align-items: center;
   flex-wrap: wrap;
 }
 .content{
-  width: 270px;
+  width: 255px;
   margin: 3px 0;
   overflow: hidden;
 }
@@ -120,7 +121,7 @@ button:hover{
 .edit_item{
   position: relative;
   background-color: white;
-  padding-top: 100px;
+  padding-top: 30px;
   padding-bottom: 30px;
   border-bottom: 2px black solid; 
   animation: slide 2s 1 0.5s;
@@ -154,4 +155,19 @@ button:hover{
 }
 .edit_cancel:hover{
   background-color: rgba(172, 14, 14, 0.917);
+}
+.drap{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  /* border: 2px black solid; */
+}
+.drap:hover{
+  cursor: pointer;
+  background-color: rgba(64, 125, 210, 0.586);
+  z-index: 3;
+}
+.Dragging{
+  border-radius: 5px;
+  background-color: rgba(199, 194, 194, 0.407);
 }

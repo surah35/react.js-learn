@@ -1,15 +1,15 @@
 import { useState } from "react"
 
 const EditItem = ( {updateData ,id,updateState,title,date,time})=>{
-    const [newtitle , setnewTitle] = useState(title)
+    const [newtitle , setnewTitle] = useState((title === "無內容") ?"" :title )
     const titleChange = function(e){
         setnewTitle(e.target.value)
     }
-    const [newdate , setnewDate] = useState(date)
+    const [newdate , setnewDate] = useState((date === "無日期") ?"" :date)
     const dateChange = function(e){
         setnewDate(e.target.value)
     }
-    const [newtime , setnewTime] = useState(time)
+    const [newtime , setnewTime] = useState((time === "無時間") ?"" :time)
     const timeChange = function(e){
         setnewTime(e.target.value)
     }
@@ -21,9 +21,9 @@ const EditItem = ( {updateData ,id,updateState,title,date,time})=>{
                     if(flag){
                         return {...item,
                         isEditting:!item.isEditting,
-                        time:time,
-                        date:date,
-                        title:title
+                        time:newtime,
+                        date:newdate,
+                        title:newtitle
                         }
                     }
                     else return { 
