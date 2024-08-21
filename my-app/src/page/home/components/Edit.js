@@ -27,7 +27,8 @@ const Edit = ({addData,updateState}) =>{
                     title,
                     date,
                     time,
-                    isDone:false
+                    isDone:false,
+                    isEditting:false
                 },...prevData
             ]  
         })
