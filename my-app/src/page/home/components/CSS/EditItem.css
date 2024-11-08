@@ -1,0 +1,35 @@
+.edit_item{
+    position: relative;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border-bottom: 2px black solid; 
+}
+  
+.edit_done{
+    margin-top: 10px;
+    width: 49%;
+    height: 30px;
+    border: none;
+    background-color: rgb(23, 150, 228);
+    color: white;
+    font-weight: bold;
+    font-size:medium;
+}
+.edit_done:hover{
+    background-color:  rgb(20, 125, 190);
+}
+.edit_cancel{
+    margin-top: 10px;
+    margin-left: 5px;
+    width: 49%;
+    height: 30px;
+    border: none;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size:medium;
+}
+.edit_cancel:hover{
+    background-color: rgba(172, 14, 14, 0.917);
+}

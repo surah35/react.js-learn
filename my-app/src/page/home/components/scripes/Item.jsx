@@ -2,8 +2,9 @@ import EditItem from "./EditItem"
 import {useSortable} from "@dnd-kit/sortable"
 import {CSS} from "@dnd-kit/utilities"
 import { FiMenu } from "react-icons/fi";
+import "../CSS/Item.css"
 
-const Item = ({ title, date, time, updateData, id, updateState, isDone, isEditting,setdragClass }) => {
+const Item = ({ title, date, time, updateData, id, updateState, isDone, isEditting,setdragClass,dragClass }) => {
 
     function deleteItem() {
         updateState.current = true //把更新資料的狀態改成True
@@ -34,26 +35,26 @@ const Item = ({ title, date, time, updateData, id, updateState, isDone, isEditti
             })
         })
     }
-    const {attributes,listeners, setNodeRef,transform,transition} = useSortable({id})
+    const {attributes,listeners, setNodeRef,transform,transition,isSorting} = useSortable({id})
     const style={
         transition,
         transform:CSS.Transform.toString(transform),
     }
-    function changeClass(flag){
-        setdragClass((flag)?"Dragging":"");
-    }
+    
+    if(isSorting) setdragClass("Dragging");
+    else setdragClass("");  
     
     return (!isEditting) ?
-        <div className="item" ref={setNodeRef}>
-            <div className={`content ${isDone ? "done" : "none"}`} onClick={toggleDone} style={style} >
+        <div className={`item `} id={`${dragClass}`} ref={setNodeRef} style={style} >
+            <div className={`content ${isDone ? "done" : "none"}`} onClick={toggleDone} >
                 <p className={(isDone) ? "title" : "none"}>{title}</p>
                 <p>{date + '\t' + time}</p>
             </div>
             <div>
-                <button className="edit" onClick={toggleEdit}  style={style}>編輯</button>
-                <button className="remove" onClick={deleteItem}  style={style} >刪除</button>
+                <button className="edit_btn" onClick={toggleEdit}  >編輯</button>
+                <button className="remove_btn" onClick={deleteItem}  >刪除</button>
             </div>
-            <div className="drap" style={style} {...attributes}{...listeners} onMouseDown={()=>changeClass(true)} onMouseUp={()=>changeClass(false)} onMouseOut={()=>changeClass(false)}>
+            <div className="drap"  {...attributes}{...listeners}>
                 <FiMenu size={15} />
             </div>
             

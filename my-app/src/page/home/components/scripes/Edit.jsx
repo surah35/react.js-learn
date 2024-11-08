@@ -1,17 +1,18 @@
 import { useState } from "react"
 import {v4} from "uuid"
 import moment from "moment"
+import "../CSS/Edit.css"
 
 const Edit = ({addData,updateState}) =>{
     const [title , setTitle] = useState("")
     const titleChange = function(e){
         setTitle(e.target.value)
     }
-    const [date , setDate] = useState(moment().format('YYYY-MM-DD'))
+    const [date , setDate] = useState("")
     const dateChange = function(e){
         setDate(e.target.value)
     }
-    const [time , setTime] = useState(moment().format('HH:mm'))
+    const [time , setTime] = useState("")
     const timeChange = function(e){
         setTime(e.target.value)
     }
@@ -21,12 +22,13 @@ const Edit = ({addData,updateState}) =>{
         setTitle("")
         setDate("")
         setTime("")
+        
         addData((prevData) =>{
             return [ {
                     id:v4(),
                     title,
-                    date,
-                    time,
+                    date:(date)?date:moment().format('YYYY-MM-DD'),
+                    time:(time)?date:moment().format('HH:mm'),
                     isDone:false,
                     isEditting:false
                 },...prevData
@@ -34,7 +36,6 @@ const Edit = ({addData,updateState}) =>{
         })
     }
     return <div>
-        <h1>備忘錄</h1>
         <p>記事內容:</p>
         <input type="text" value={title} onChange={titleChange} placeholder="請輸入記事內容" ></input>
         <p>日期:</p>

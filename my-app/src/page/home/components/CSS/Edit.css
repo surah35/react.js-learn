@@ -1,0 +1,12 @@
+
+.add{
+    padding: 3px 128px;
+    font-size: larger;
+    font-weight: 500;
+    background-color: black;
+    color: aliceblue;
+    margin-top: 25px;
+  }
+.editArea div{
+  margin-top: 10px;
+}

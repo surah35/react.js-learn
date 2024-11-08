@@ -1,0 +1,9 @@
+.list{
+    /* border: 2px darkblue solid; */
+    border-radius: 5px;
+    padding: 10px 0;
+}
+.Dragging{
+    border-radius: 5px;
+    background-color: rgba(199, 194, 194, 0.407);
+}

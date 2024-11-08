@@ -1,0 +1,75 @@
+.item{
+    display:flex ;
+    box-sizing: inherit;
+    border-bottom: 1px solid;
+    padding:7px 4px ;
+    justify-content:space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+.content{
+    width: 255px;
+    margin: 3px 0;
+    overflow: hidden;
+}
+.content:hover{
+    border-radius: 3px;
+    padding-left: 3px;
+    background-color: #a69e9ecf;
+    cursor: pointer;
+}
+
+.item div p{
+    margin: 4px 0;
+}
+.remove_btn{
+    min-width: 38.67px;
+    height: 30px;
+    background-color: #f03737fa;
+    color: white;
+    font-weight:bold;
+    border: none;
+    margin-left: 2px;
+}
+.edit_btn{
+    min-width: 38.67px;
+    height: 30px;
+    background-color: green;
+    color: white;
+    font-weight:bold;
+    border: none;
+    /* margin: 0 auto; */
+}
+
+.remove_btn:hover{
+    background-color: rgb(187, 81, 81);
+}
+.edit_btn:hover{
+    background-color: rgb(19, 89, 21);
+}
+.done{
+    opacity: 0.5;
+    background-color: gray;
+    border-radius: 3px;
+}
+.title{
+    text-decoration: line-through 2px solid black;
+
+}
+.drap{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    /* border: 2px black solid; */
+}
+.drap:hover{
+    cursor:move;
+    /* background-color: rgba(64, 125, 210, 0.586); */
+    z-index: 50;
+}
+
+#Dragging{
+    border-radius: 5px;
+    background-color:white;
+    border: 2px rgba(64, 125, 210, 0.586) solid;
+}

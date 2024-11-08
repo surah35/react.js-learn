@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "../CSS/EditItem.css"
 
 const EditItem = ( {updateData ,id,updateState,title,date,time})=>{
     const [newtitle , setnewTitle] = useState((title === "無內容") ?"" :title )

@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
-import Edit from './components/Edit'
-import List from './components/List'
+import Edit from './components/scripes/Edit'
+import List from './components/scripes/List'
 import { API_DATA } from '../../global/constans'
 import '../../index.css'
-import {DndContext,closestCorners, useSensor,PointerSensor,TouchSensor,KeyboardSensor} from "@dnd-kit/core"
-import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+import {DndContext,closestCorners, useSensor,useSensors,PointerSensor,TouchSensor} from "@dnd-kit/core"
+import { arrayMove, } from '@dnd-kit/sortable'
+import HideEditUp from './components/scripes/HideEditUp'
+import HideEditDown from './components/scripes/HideEditDown'
 
 async function fetchDB(setData) {
     const res = await fetch(API_DATA)
@@ -24,6 +26,8 @@ async function updateDB(data) {
 const Home = () => {
 
     const [data, setData] = useState([]);
+    const [hideState,sethideState] = useState(false)
+    const [isExpanded,setisExpanded] = useState(false)
     const updateState = useRef(false);
     //當data改變時 載入裡面的function
     useEffect(() => {
@@ -55,20 +59,23 @@ const Home = () => {
             alert('不可拖移到此處');
         }  
     }
-    const sensors = useSensor(
+    const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(TouchSensor),
-        useSensor(KeyboardSensor),{
-            coordinateGetter:sortableKeyboardCoordinates,
-        }
     )
     
     return <div className='app'>
-        <Edit addData={setData} updateState={updateState} sensors={sensors}/>
-        <DndContext collisionDetect={closestCorners} onDragEnd={handleDragEnd}>
-            <List listData={data} updateData={setData} updateState={updateState} />
+        <h1>備忘錄</h1>
+        <div className={`editArea ${isExpanded?"Expanded":""}`}>
+            {(hideState)?<></>:<Edit addData={setData} updateState={updateState} />}
+        </div>
+        <div>
+            {(!hideState)?<></>:<HideEditDown sethideState={sethideState} hideState={hideState} setisExpanded={setisExpanded} isExpanded={isExpanded}/>}
+            {(hideState)?<></>:<HideEditUp sethideState={sethideState} hideState={hideState}setisExpanded={setisExpanded} isExpanded={isExpanded}/>}
+        </div>
+        <DndContext collisionDetect={closestCorners} onDragEnd={handleDragEnd} sensors={sensors}>
+            <List listData={data} updateData={setData} updateState={updateState}/>
         </DndContext>
-       
     </div>
 
 }

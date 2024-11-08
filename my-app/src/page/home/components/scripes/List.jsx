@@ -1,12 +1,12 @@
 import { useState} from "react"
 import Item from "./Item"
 import {SortableContext, verticalListSortingStrategy} from "@dnd-kit/sortable"
+import "../CSS/List.css"
 
 const List = ({listData,updateData,updateState}) =>{
     
     const [dragClass ,setdragClass ]= useState("")
     console.log(dragClass);
-    
     return <div className={`list ${dragClass}`} >
         <SortableContext items={listData} strategy={verticalListSortingStrategy}>
             {
@@ -27,6 +27,7 @@ const List = ({listData,updateData,updateState}) =>{
                     updateData={updateData}
                     updateState={updateState}
                     setdragClass={setdragClass}
+                    dragClass={dragClass}
                 />
             })}
         </SortableContext>

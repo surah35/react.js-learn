@@ -1,0 +1,21 @@
+
+@keyframes cool{
+    0%{
+        background-color: rgb(198, 197, 197);
+    }
+    100%{
+        background-color: black;
+    }
+}
+.hide_edit{
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    margin-top: 10px;
+}
+.hide_edit:hover{
+    background-color: rgba(247, 247, 40, 0.472);
+    cursor: pointer;
+    color: gray;
+}
